@@ -15,14 +15,14 @@ class App extends Component {
     this.setState({
       categories: [category, ...this.state.categories]
     });
-    console.log(this.state);
+    // console.log(this.state);
   };
 
   addImage = imageUrl => {
     this.setState({
       images: [imageUrl, ...this.state.images]
     });
-    console.log(this.state);
+    // console.log(this.state);
   };
 
   render() {

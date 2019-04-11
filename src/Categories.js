@@ -1,24 +1,13 @@
 import React from "react";
 
 export class Categories extends React.Component {
-  state = {
-    count: 0
-  };
-
-  handleClick = () => {
-    const clickCount = this.props;
-    console.log(clickCount);
-    this.setState({ count: clickCount });
-  };
-
   render() {
     return (
       <div>
-        <p>categories and counts</p>
+        <h2>List of Cat-egories</h2>
+        {this.props.categories.length === 0 && "Add a Cat-egory"}
         {this.props.categories.map((category, index) => (
-          <div onClick={this.handleClick} key={index}>
-            {category.text} {category.count}
-          </div>
+          <div key={index}>{category.text}</div>
         ))}
       </div>
     );

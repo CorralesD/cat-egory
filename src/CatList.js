@@ -4,7 +4,8 @@ export class CatList extends React.Component {
   render() {
     return (
       <div>
-        <p>cat list of images</p>
+        <h2>List of Images</h2>
+        {this.props.images.length === 0 && "Click on image to display here"}
         <div className="row">
           {this.props.images.map((image, index) => (
             <div key={index} className="col mb-3">
