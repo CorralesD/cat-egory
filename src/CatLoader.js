@@ -2,8 +2,9 @@ import React from "react";
 import { fetchRandomCat } from "./catApi";
 
 export class CatLoader extends React.Component {
+  // TODO, fetchRandomCat
   state = {
-    imgUrl: []
+    imgUrl: ""
   };
 
   async componentDidMount() {
@@ -13,17 +14,34 @@ export class CatLoader extends React.Component {
     this.setState({ imgUrl });
   }
 
-  // TODO, fetchRandomCat
-  render() {
-    const image = this.state.imgUrl;
+  handleReload = async () => {
+    const { data } = await fetchRandomCat();
+    const imgUrl = data.file;
 
+    this.setState({ imgUrl });
+  };
+
+  handleClick = () => {
+    const currentImage = this.state.imgUrl;
+    this.props.onClick(currentImage);
+  };
+
+  render() {
     return (
       <div>
         <img
-          src={image}
+          onClick={this.handleClick}
+          src={this.state.imgUrl}
           style={{ maxHeight: "300px" }}
-          alt="random-cat-image"
+          alt="random-cat"
         />
+        <button
+          onClick={this.handleReload}
+          className="btn btn-warning mt-3"
+          style={{ display: "block" }}
+        >
+          Reload
+        </button>
       </div>
     );
   }
